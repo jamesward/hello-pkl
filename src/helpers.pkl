@@ -1,0 +1,10 @@
+class Address {
+  street: String
+  city: String
+}
+
+function inDenver(_street: String): Address =
+  new Address {
+    street = _street
+    city = "Denver"
+  }
