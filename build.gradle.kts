@@ -5,7 +5,7 @@ plugins {
 pkl {
     evaluators {
         register("evalPkl") {
-            sourceModules.add(file("src/hello.pkl"))
+            sourceModules.add(file("src/hello.pkl").toURI())
             outputFile = layout.buildDirectory.file("hello.yaml")
             outputFormat = "yaml"
         }
