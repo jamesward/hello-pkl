@@ -1,0 +1,146 @@
+// Why? Safe, Reusable, Productive
+// Also: IDE, As-a-Library, Lang Bindings, Modern but Constrained
+
+import "pkl:semver"
+import "helpers.pkl"
+
+// Declarative
+name = "asdf"
+
+// many output formats
+// pkl eval -f yaml -o hello.yaml hello.pkl
+// pkl eval -f json -o hello.json hello.pkl
+
+// Types
+
+age: Int = 1
+
+// Type Constraints
+
+port: Int(this > 1000) = 1001
+
+
+// Schemas / Classes
+
+// class Person {
+//   name: String
+// }
+
+bob = new Person {
+  name = "Bob"
+}
+
+
+
+// Nullability
+class Person {
+  name: String
+  age: Int? = null
+}
+
+julie = new Person {
+  name = "Julie"
+  age = 1
+}
+
+
+// Comments
+
+/*
+  multi
+  line
+*/
+
+/// The place is a place
+place: String = "Denver"
+
+
+// Type Aliases
+
+typealias NonEmptyString = String(!isEmpty)
+
+lastName: NonEmptyString = "Ward"
+
+// Enums
+typealias Machine = "ubuntu" | "windows"
+
+machine: Machine = "ubuntu"
+
+
+// Objects
+
+buildConfig {
+  lang = "Kotlin"
+}
+
+
+// Templates
+
+anotherConfig = (buildConfig) {
+  ver = semver.parseOrNull("a")
+}
+
+
+// Lists, Maps, Sets
+
+local animals = new Listing<String> {
+  "cheeta"
+  "moose"
+}
+
+animal {
+  for (_animal in animals) {
+    new {
+      name = _animal
+    }
+  }
+}
+
+
+envs = new Mapping<String, String> {
+  ["FOO"] = "asdf"
+}
+
+
+operatingSystems: Set = Set("windows", "windows")
+
+
+osName = if (operatingSystems.contains("linux")) "Linux" else "Unknown"
+
+
+// Deterministic Evaluation
+
+
+
+// Reusability
+
+// functions
+
+function add(x: Int, y: Int) =
+  x + y
+
+local nums = List(1, 2, 3)
+
+myNums = nums.map((i) -> add(i, 1))
+
+function validatePerson(p: Person): Person? =
+  if ((p.age ?? -1) < 0) null else p
+
+maybeBob = validatePerson(julie)
+
+// libraries
+addr = helpers.inDenver("7 1st St")
+
+
+// std-lib
+// https://pkl-lang.org/package-docs/pkl/0.26.2/base/index.html
+
+// RegEx, Durations, helper functions
+
+local t: Duration = 1.min - 10.s
+
+secs = t.toUnit("s").value
+
+b = "asdf".isEmpty
+
+firstName: String(!isEmpty) = "asdf"

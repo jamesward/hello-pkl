@@ -1,12 +1,11 @@
 // Why? Safe, Reusable, Productive
 // Also: IDE, As-a-Library, Lang Bindings, Modern but Constrained
 
-import "pkl:semver"
-import "helpers.pkl"
+//import "pkl:semver"
+//import "helpers.pkl"
 
 // Declarative
 
-name = "asdf"
 
 // many output formats
 // pkl eval -f yaml -o hello.yaml hello.pkl
@@ -14,33 +13,11 @@ name = "asdf"
 
 // Types
 
-age: Int = 1
 
 // Type Constraints
 
-port: Int(this > 1000) = 1001
-
 
 // Schemas / Classes
-
-// class Person {
-//   name: String
-// }
-
-bob = new Person {
-  name = "Bob"
-}
-
-// Nullability
-class Person {
-  name: String
-  age: Int? = null
-}
-
-julie = new Person {
-  name = "Julie"
-  age = 1
-}
 
 
 // Comments
@@ -50,99 +27,52 @@ julie = new Person {
   line
 */
 
-/// The place is a place
-place: String = "Denver"
-
-isDenver: Boolean = place == "Denver"
+// Comment Docs
 
 
 // Type Aliases
 
-typealias NonEmptyString = String(!isEmpty)
-
-lastName: NonEmptyString = "Ward"
-
 
 // Enums
-typealias Machine = "ubuntu" | "windows"
-
-machine: Machine = "ubuntu"
 
 
 // Objects
 
-buildConfig {
-  lang = "Kotlin"
-}
-
 
 // Templates
-
-anotherConfig = (buildConfig) {
-  ver = semver.parseOrNull("a")
-}
 
 
 // Lists, Maps, Sets
 
-local animals = new Listing<String> {
-  "cheeta"
-  "moose"
-}
+  // listings (with local)
 
-animal {
-  for (_animal in animals) {
-    new {
-      name = _animal
-    }
-  }
-}
+  // for in loops
 
+  // mappings
 
-envs = new Mapping<String, String> {
-  ["FOO"] = "asdf"
-}
+  // sets
 
-
-operatingSystems: Set = Set("windows", "windows")
-
-
-osName = if (operatingSystems.contains("linux")) "Linux" else "Unknown"
-
-
-// Deterministic Evaluation
-
+  // if expression
 
 
 // Reusability
 
   // functions
 
-function add(x: Int, y: Int) =
-  x + y
+  // functors
 
-local nums = List(1, 2, 3)
+  // validation
 
-myNums = nums.map((i) -> add(i, 1))
+  // libraries local
 
-function validatePerson(p: Person): Person? =
-  if ((p.age ?? -1) < 0) null else p
+  // std-lib
+  // https://pkl-lang.org/package-docs/pkl/0.26.2/base/index.html
 
-maybeBob = validatePerson(julie)
+  // RegEx, Durations, helper functions
+  // https://pkl-lang.org/package-docs/pkl/0.26.2/
 
-  // libraries
-addr = helpers.inDenver("7 1st St")
+  // durations
 
+  // str
 
-// std-lib
-// https://pkl-lang.org/package-docs/pkl/0.26.2/base/index.html
-
-// RegEx, Durations, helper functions
-
-local t: Duration = 1.min - 10.s
-
-secs = t.toUnit("s").value
-
-b = "asdf".isEmpty
-
-firstName: String(!isEmpty) = "asdf"
+  // semver
