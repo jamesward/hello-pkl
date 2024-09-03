@@ -5,6 +5,7 @@ import "pkl:semver"
 import "helpers.pkl"
 
 // Declarative
+
 name = "asdf"
 
 // many output formats
@@ -30,8 +31,6 @@ bob = new Person {
   name = "Bob"
 }
 
-
-
 // Nullability
 class Person {
   name: String
@@ -54,12 +53,15 @@ julie = new Person {
 /// The place is a place
 place: String = "Denver"
 
+isDenver: Boolean = place == "Denver"
+
 
 // Type Aliases
 
 typealias NonEmptyString = String(!isEmpty)
 
 lastName: NonEmptyString = "Ward"
+
 
 // Enums
 typealias Machine = "ubuntu" | "windows"
